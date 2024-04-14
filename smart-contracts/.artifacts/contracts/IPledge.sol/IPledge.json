@@ -1,0 +1,213 @@
+{
+  "_format": "hh-sol-artifact-1",
+  "contractName": "IPledge",
+  "sourceName": "contracts/IPledge.sol",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "tokenId",
+          "type": "uint256"
+        }
+      ],
+      "name": "getNFT",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "uint256",
+              "name": "tokenId",
+              "type": "uint256"
+            },
+            {
+              "internalType": "address",
+              "name": "nftAddress",
+              "type": "address"
+            },
+            {
+              "internalType": "string",
+              "name": "gradientOne",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "gradientTwo",
+              "type": "string"
+            },
+            {
+              "internalType": "uint256",
+              "name": "diameter",
+              "type": "uint256"
+            }
+          ],
+          "internalType": "struct IPledge.PledgeNFT",
+          "name": "",
+          "type": "tuple"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getNFTs",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "uint256",
+              "name": "tokenId",
+              "type": "uint256"
+            },
+            {
+              "internalType": "address",
+              "name": "nftAddress",
+              "type": "address"
+            },
+            {
+              "internalType": "string",
+              "name": "gradientOne",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "gradientTwo",
+              "type": "string"
+            },
+            {
+              "internalType": "uint256",
+              "name": "diameter",
+              "type": "uint256"
+            }
+          ],
+          "internalType": "struct IPledge.PledgeNFT[]",
+          "name": "",
+          "type": "tuple[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        }
+      ],
+      "name": "getNFTsOf",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "uint256",
+              "name": "tokenId",
+              "type": "uint256"
+            },
+            {
+              "internalType": "address",
+              "name": "nftAddress",
+              "type": "address"
+            },
+            {
+              "internalType": "string",
+              "name": "gradientOne",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "gradientTwo",
+              "type": "string"
+            },
+            {
+              "internalType": "uint256",
+              "name": "diameter",
+              "type": "uint256"
+            }
+          ],
+          "internalType": "struct IPledge.PledgeNFT[]",
+          "name": "",
+          "type": "tuple[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "to",
+          "type": "address"
+        },
+        {
+          "components": [
+            {
+              "internalType": "string",
+              "name": "gradientOne",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "gradientTwo",
+              "type": "string"
+            },
+            {
+              "internalType": "uint256",
+              "name": "diameter",
+              "type": "uint256"
+            }
+          ],
+          "internalType": "struct IPledge.MintParams[]",
+          "name": "",
+          "type": "tuple[]"
+        }
+      ],
+      "name": "mintMany",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "to",
+          "type": "address"
+        },
+        {
+          "components": [
+            {
+              "internalType": "string",
+              "name": "gradientOne",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "gradientTwo",
+              "type": "string"
+            },
+            {
+              "internalType": "uint256",
+              "name": "diameter",
+              "type": "uint256"
+            }
+          ],
+          "internalType": "struct IPledge.MintParams",
+          "name": "",
+          "type": "tuple"
+        }
+      ],
+      "name": "mintPledge",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "linkReferences": {},
+  "deployedLinkReferences": {}
+}
