@@ -1,5 +1,5 @@
 import { ethers, toBigInt } from 'ethers';
-import { IPledge } from '../types';
+import { IPledge } from '../../client/src/types';
 
 export function addPercentage(value: bigint, percentage: number): bigint {
  const bps = 10000 * percentage;
@@ -12,11 +12,10 @@ export function generateRandomNFTs(length: number): IPledge.MintParamsStruct[] {
 }
 
 export function generateRandomNFT(): IPledge.MintParamsStruct {
- let currentSeed = getRandomSeed();
  return {
-  gradientOne: getRandomColor(currentSeed),
-  gradientTwo: getRandomColor(currentSeed),
-  diameter: getRandomDiameter(currentSeed),
+  gradientOne: getRandomColor(getRandomSeed()),
+  gradientTwo: getRandomColor(getRandomSeed()),
+  diameter: getRandomDiameter(getRandomSeed()),
  };
 }
 

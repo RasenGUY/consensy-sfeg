@@ -1,0 +1,33 @@
+{
+    "version": "0.0.0",
+    "networks": {
+        "1337": {
+            "contracts": {
+                "Pledge": {
+                    "address": "0x4a5dFcCD02950Cef2617F752E214604b6a7b41b9",
+                    "legacyAddresses": [],
+                    "deploymentBlock": null
+                },
+                "Borrow": {
+                    "address": "0x319322a08ac32b3111F1D6e1714E90F2c32535A9",
+                    "legacyAddresses": [],
+                    "deploymentBlock": null
+                }
+            }
+        },
+        "59141": {
+            "contracts": {
+                "Pledge": {
+                    "address": "0xE620d8C68D4df60aB21F3bb2E969E272627b5d38",
+                    "legacyAddresses": [],
+                    "deploymentBlock": null
+                },
+                "Borrow": {
+                    "address": "0xb7a00361A8B257c76bB6ab81d17c51F8CB2cc500",
+                    "legacyAddresses": [],
+                    "deploymentBlock": null
+                }
+            }
+        }
+    }
+}

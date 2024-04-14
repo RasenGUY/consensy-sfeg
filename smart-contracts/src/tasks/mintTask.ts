@@ -1,5 +1,5 @@
 import { network } from "hardhat";
-import { Pledge } from "../../types";
+import { Pledge } from "../../../client/src/types";
 import { Deployer } from "../deployer";
 import { Task } from "./types";
 import { ArtifactName, DependenciesMap, DeployedContractList } from "../types";
@@ -12,7 +12,7 @@ import { ZeroAddress } from "ethers";
 * deploys the pledge contract
 */
 const mintTask: Task = {
- tags: ['mint'],
+ tags: ['mint', 'full'],
  priority: 2,
  inputOptions: true,
  run: async (
@@ -32,7 +32,8 @@ const mintTask: Task = {
     const pledge = ctx.artifacts.Pledge.connect(nonceManager).attach(Pledge.address) as Pledge;
     const MINT_AMOUNT = 10;
     const toMint = generateRandomNFTs(MINT_AMOUNT);
-    await pledge.mintMany(inputs.receiver, toMint);
+    const tx = await pledge.mintMany(inputs.receiver, toMint);
+    await tx.wait()
     // if(await pledge.balanceOf(inputs.receiver) >= BigInt(MINT_AMOUNT)) throw new Error('Minting failed');
     ctx.log('Minted 10 random Pledge NFTs to', inputs.receiver);
     ctx.log('NFTs minted:', JSON.stringify(toMint));

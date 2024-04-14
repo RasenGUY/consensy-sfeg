@@ -90,13 +90,20 @@ const config: HardhatUserConfig = {
       hardfork: 'london',
       chainId: 1337,
     },
+    localhost: {
+      url: 'http://127.0.0.1:8545',
+      hardfork: 'london',
+      chainId: 1337,
+      loggingEnabled: true,
+    },
     ganache: {
       url: 'http://127.0.0.1:7545',
-      hardfork: 'merge',
+      hardfork: 'london',
       chainId: 1337,
       loggingEnabled: true,
     },
     linea_sepolia: {
+      chainId: 59141,
       url: `https://linea-sepolia.infura.io/v3/${process.env.INFURA_API_KEY}`,
       accounts: [process.env.COINBASE_PRIVATE_KEY as string],
     },
@@ -105,6 +112,9 @@ const config: HardhatUserConfig = {
     outDir: 'types',
     target: 'ethers-v6',
   },
+  /*   sourcify: {
+    enabled: true,
+  }, */
   etherscan: {
     apiKey: pickBy({
       linea_sepolia: process.env.LINEASCAN_API_KEY,

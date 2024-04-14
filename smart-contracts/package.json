@@ -41,9 +41,11 @@
   "scripts": {
     "compile": "hardhat compile --force",
     "deploy:pledge:localhost": "hardhat run --network localhost scripts/deploy_pledge.ts",
+    "deploy:pledge:linea-sepolia": "hardhat run --network linea_sepolia scripts/deploy_pledge.ts",
     "deploy:pledge:ganache": "hardhat run --network ganache scripts/deploy_pledge.ts",
     "deploy:borrow:localhost": "hardhat run --network localhost scripts/deploy_borrow.ts",
     "deploy:borrow:ganache": "hardhat run --network ganache scripts/deploy_borrow.ts",
+    "deploy:borrow:linea-sepolia": "hardhat run --network linea_sepolia scripts/deploy_borrow.ts",
     "deploy:localhost": "hardhat run --network localhost scripts/deploy_full.ts",
     "deploy:ganache": "hardhat run --network ganache scripts/deploy_full.ts",
     "deploy:linea-sepolia": "hardhat run --network linea_sepolia scripts/deploy_full.ts",

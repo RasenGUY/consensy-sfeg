@@ -8,7 +8,7 @@ import {
   Pledge,
   Pledge__factory,
   IPledge,
-} from '../types';
+} from '../../client/src/types';
 
 export type RequestInput = (string | number | bigint)[]
 

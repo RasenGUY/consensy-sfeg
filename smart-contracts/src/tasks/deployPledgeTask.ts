@@ -1,4 +1,4 @@
-import { Pledge } from "../../types";
+import { Pledge } from "../../../client/src/types";
 import { Deployer } from "../deployer";
 import { Task } from "../tasks/types";
 import { ContractName, DependenciesMap, DeployedContractList } from "../types";

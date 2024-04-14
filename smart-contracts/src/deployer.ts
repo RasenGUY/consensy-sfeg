@@ -115,7 +115,6 @@ export class Deployer {
     for (const task of tasks.sort( // sorts tasks from big to small
     (a: Task, b: Task) => a.priority - b.priority,
     )) {
-      this.log('Tags:', tags, task.tags);
       if (!tags.some((t) => task.tags.includes(t.toLowerCase()))) continue;
       this.log('Executing task', { tags: task.tags });
       let dependencies: any; 

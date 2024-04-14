@@ -3,15 +3,15 @@ import { Deployer } from "../deployer";
 import { Task } from "../tasks/types";
 import { network } from 'hardhat';
 import { ArtifactName, ContractName, DependenciesMap, DeployedContractList } from "../types";
-import { Borrow } from "../../types";
-import { ZeroAddress } from "ethers";
+import { Borrow } from "../../../client/src/types";
+import { ZeroAddress, parseEther } from "ethers";
 import { unwrapDependencies } from "../helpers";
 
 /**
 * deploys the borrow contract
 */
 const deployBorrowContractTask: Task = {
- tags: ['deploy_borrow', 'full'],
+ tags: ['borrow', 'full'],
  priority: 1,
  inputOptions: true,
  run: async (
@@ -23,8 +23,12 @@ const deployBorrowContractTask: Task = {
     const nonceManager = ctx.nonceManager;
     nonceManager.reset();
     ctx.log('Deploying Borrow Contract');
-    const borrow = await ctx.artifacts.Borrow.connect(nonceManager).deploy(Pledge.address) as Borrow;
+    const borrow = await ctx.artifacts.Borrow.connect(nonceManager.signer).deploy(Pledge.address) as Borrow;
     await borrow.waitForDeployment();
+    nonceManager.increment()
+    const tx = await borrow.connect(nonceManager.signer).addLiquidity({ value: parseEther('0.01') });
+    await tx.wait();
+    nonceManager.increment()
     await ctx.saveContractConfig(ContractName.Borrow, borrow);
     ctx.log('Borrow Contract deployed at:', borrow.target);
  },

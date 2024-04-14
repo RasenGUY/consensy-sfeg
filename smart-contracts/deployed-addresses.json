@@ -4,12 +4,12 @@
         "1337": {
             "contracts": {
                 "Pledge": {
-                    "address": "0x4a5dFcCD02950Cef2617F752E214604b6a7b41b9",
+                    "address": "0x0B306BF915C4d645ff596e518fAf3F9669b97016",
                     "legacyAddresses": [],
                     "deploymentBlock": null
                 },
                 "Borrow": {
-                    "address": "0x319322a08ac32b3111F1D6e1714E90F2c32535A9",
+                    "address": "0x959922bE3CAee4b8Cd9a407cc3ac1C251C2007B1",
                     "legacyAddresses": [],
                     "deploymentBlock": null
                 }
