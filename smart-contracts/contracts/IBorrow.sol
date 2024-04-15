@@ -14,5 +14,5 @@ interface IBorrow {
     }
     function borrowEthForNFT(uint256 tokenId) external;
     function getLiquidity() external view returns (uint256);
-    function accountBalance() external view returns (uint256);
+    function accountBalance(address account) external view returns (uint256);
 }

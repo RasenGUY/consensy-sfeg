@@ -23,10 +23,11 @@ const deployBorrowContractTask: Task = {
     const nonceManager = ctx.nonceManager;
     nonceManager.reset();
     ctx.log('Deploying Borrow Contract');
+    if(Pledge.address === ZeroAddress) throw new Error('Pledge contract not found');
     const borrow = await ctx.artifacts.Borrow.connect(nonceManager.signer).deploy(Pledge.address) as Borrow;
     await borrow.waitForDeployment();
     nonceManager.increment()
-    const tx = await borrow.connect(nonceManager.signer).addLiquidity({ value: parseEther('0.01') });
+    const tx = await borrow.connect(nonceManager.signer).addLiquidity({ value: inputs.liquidity ?? parseEther('0.002') });
     await tx.wait();
     nonceManager.increment()
     await ctx.saveContractConfig(ContractName.Borrow, borrow);

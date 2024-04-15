@@ -16,7 +16,7 @@ async function main() {
   }
   const deployer = await Deployer.create();
   deployer.log('Network:', network.name);
-  const deployConfig = await deployer.execute(['mint'], config, {receiver: process.env.NFT_ACCOUNT as AddressLike});
+  const deployConfig = await deployer.execute(['mint'], config, {receiver: chainId === 1337 ? "0x70997970C51812dc3A010C7d01b50e0d17dc79C8" : process.env.NFT_ACCOUNT as AddressLike, nftCount: 10});
   mergeNetworkConfig(deployConfig);
   console.log('Mint Success!');
 }

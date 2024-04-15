@@ -46,7 +46,7 @@ export interface BorrowInterface extends Interface {
   ): string;
   encodeFunctionData(
     functionFragment: "accountBalance",
-    values?: undefined
+    values: [AddressLike]
   ): string;
   encodeFunctionData(
     functionFragment: "addLiquidity",
@@ -194,7 +194,7 @@ export interface Borrow extends BaseContract {
 
   BORROW_RATE: TypedContractMethod<[], [bigint], "view">;
 
-  accountBalance: TypedContractMethod<[], [bigint], "view">;
+  accountBalance: TypedContractMethod<[account: AddressLike], [bigint], "view">;
 
   addLiquidity: TypedContractMethod<[], [void], "payable">;
 
@@ -229,7 +229,7 @@ export interface Borrow extends BaseContract {
   ): TypedContractMethod<[], [bigint], "view">;
   getFunction(
     nameOrSignature: "accountBalance"
-  ): TypedContractMethod<[], [bigint], "view">;
+  ): TypedContractMethod<[account: AddressLike], [bigint], "view">;
   getFunction(
     nameOrSignature: "addLiquidity"
   ): TypedContractMethod<[], [void], "payable">;

@@ -1,0 +1,10 @@
+{
+  "contracts": {
+    "Pledge": {
+      "address": "0x51f95EFb4CCa27c962198045626DB076CfD07A61"
+    },
+    "Borrow": {
+      "address": "0x6DFf9eC5e175eb20028c351E9EbE377fB306Cd2C"
+    }
+  }
+}

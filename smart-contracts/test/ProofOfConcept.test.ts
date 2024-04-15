@@ -8,7 +8,7 @@ import {
   Pledge,
   Pledge__factory,
   IPledge,
-} from '../../client/src/types';
+} from '../types';
 
 export type RequestInput = (string | number | bigint)[]
 
@@ -119,10 +119,12 @@ describe("Proof Of Concept", () => {
     })
     it('should allow a user to borrow eth for an nft', async () => {
       const nftId = 0;
+      const belanceBefore = await borrow.accountBalance(alice.address);
       await pledge.connect(alice).approve(borrow.target, nftId);
       await borrow.connect(alice).borrowEthForNFT(nftId);
       const nftOwner = await pledge.ownerOf(nftId);
       expect(nftOwner).to.equal(borrow.target);
+      expect(belanceBefore).to.be.lessThan(await borrow.accountBalance(alice.address)); 
     });
   })
 });

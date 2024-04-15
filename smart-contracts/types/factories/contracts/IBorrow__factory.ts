@@ -70,7 +70,13 @@ const _abi = [
     type: "event",
   },
   {
-    inputs: [],
+    inputs: [
+      {
+        internalType: "address",
+        name: "account",
+        type: "address",
+      },
+    ],
     name: "accountBalance",
     outputs: [
       {

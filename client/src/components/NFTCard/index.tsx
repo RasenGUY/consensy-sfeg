@@ -1,6 +1,10 @@
-import { useBorrowEthForNFTMutation } from "../../app/blockchainApiSlice";
+import { getAccount } from "@wagmi/core";
+import { useApproveForBorrowMutation, useBorrowEthForNFTMutation, useIsAssetApprovedQuery } from "../../app/blockchainApiSlice";
+import { ContractTypes, getAddress, config as wagmiConfig } from "../../libs/blockchain";
 import { PledgeNFTModel } from "../../models/pledge"
 import toast from "react-hot-toast";
+import { Address } from "viem";
+
 
 type NFTCardProps = {
  nft: PledgeNFTModel
@@ -8,6 +12,9 @@ type NFTCardProps = {
 
 export const NFTCard: React.FC<NFTCardProps> = ({nft}: NFTCardProps) => {
   const [borrow, borrowQuery] = useBorrowEthForNFTMutation();
+  const [approve, approveQuery] = useApproveForBorrowMutation();
+  const { chainId } = getAccount(wagmiConfig)
+  const {data: isApproved, ...isApprovedQuery} = useIsAssetApprovedQuery({ borrowAddress: chainId ? getAddress(chainId, ContractTypes.BORROW) : '' as Address, tokenId: BigInt(nft.tokenId) });
  
   const borrowEth = async (tokenId: number) => {
     try {
@@ -17,21 +24,48 @@ export const NFTCard: React.FC<NFTCardProps> = ({nft}: NFTCardProps) => {
       toast.error('Something went wrong');
     }
   }
+
+  const approveForColl = async (tokenId: number) => {
+    if(!chainId) return;
+    const borrowAddress = getAddress(chainId, ContractTypes.BORROW);
+    try {
+
+      await approve({ borrowAddress, tokenId: BigInt(tokenId) }).unwrap();
+      toast.success('Collateralization Approval Success');
+    } catch (error) {
+      console.log(error);
+      toast.error('Approval Failed');
+    }
+  }
+
   return (
-    <div className="bg-neutral-400 w-[250px] h-[250px] relative flex border border-1 border-teal flex-col items-center justify-between rounded-3">
+    <div className="bg-neutral-400 w-[250px] h-[250px] relative flex border border-1 border-teal flex-col rounded-lg">
      <div className="absolute left-0 top-0 p-2">
       <h3>#<b>{Number(nft.tokenId)}</b></h3>
      </div>
-     <div className="flex col items-center justify-center p-3 bg-neutral-400">
-      <div className="circle rounded-full" style={{
+     <div className="grow flex items-center justify-center p-3 bg-neutral-400 rounded-lg">
+      <div className="circle rounded-full bg-gradient-to-r" style={{
         width: Number(nft.diameter).toString().concat("px"),
         height: Number(nft.diameter).toString().concat("px"),
-        backgroundColor: nft.gradientOne, 
+        background: `linear-gradient(to right, ${nft.gradientOne}, ${nft.gradientTwo})`,
       }}></div>
      </div>
-     <div className="relative flex justify-between w-full p-1 bg-neutral-600">
+     <div className="shrink relative flex justify-between w-full p-2 bg-neutral-600 rounded-b-lg">
        {/* <button disabled className="p-2 bg-gray-800">Payback</button> */}
-       <button className="p-2 bg-green-500" onClick={async () => await borrowEth(nft.tokenId)}>{borrowQuery.isLoading ? "...Borrowing" : "Collateralize"}</button>
+         {
+          !isApproved ? 
+            <button 
+            className="p-2 bg-green-500" 
+            onClick={async () => await approveForColl(nft.tokenId)}
+            disabled={approveQuery.isLoading || isApprovedQuery.isLoading}
+            >{approveQuery.isLoading ? "...Processing" : "Approve"}</button>
+          :
+            <button 
+            className="p-2 bg-green-500" 
+            onClick={async () => await borrowEth(nft.tokenId)}
+            disabled={borrowQuery.isLoading || isApprovedQuery.isLoading}
+            >{borrowQuery.isLoading ? "...Borrowing" : "Collateralize"}</button>
+        }
      </div>
     </div>
   )

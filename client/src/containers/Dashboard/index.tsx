@@ -10,7 +10,7 @@ export const DashBoard = () => {
  const { disconnect } = useDisconnect();
  const accountAssets = useGetAccountAssetsQuery(address as Address ?? '');
  const liquidity = useGetLiquidityQuery();  
- const accBalance = useGetUserAccountBalanceQuery();  
+ const accBalance = useGetUserAccountBalanceQuery(address as Address ?? '');  
 
  return (
   <div className="flex flex-col">

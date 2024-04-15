@@ -52,11 +52,14 @@ contract Pledge is IPledge, ERC721, Ownable {
     }
 
     function getNFTsOf(address owner) public view returns (PledgeNFT[] memory) {
+        uint256 ownerTokenIds = balanceOf(owner);
         uint256 totalTokenIds = tokenIds;
-        PledgeNFT[] memory nfts = new PledgeNFT[](balanceOf(owner));
-        for(uint256 i = 0; i < totalTokenIds; i++) {
+        PledgeNFT[] memory nfts = new PledgeNFT[](ownerTokenIds);
+        uint256 j = 0;
+        for(uint256 i = 0; i < totalTokenIds ; i++) {
             if(_ownerOf(i) == owner) {
-                nfts[i] = _nfts[i];
+                nfts[j] = _nfts[i];
+                j++;
             }
         }
         return nfts;

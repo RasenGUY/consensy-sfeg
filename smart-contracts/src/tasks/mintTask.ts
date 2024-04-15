@@ -28,14 +28,14 @@ const mintTask: Task = {
        ArtifactName.Pledge,
      ],
    );
-    ctx.log('Minting 10 random nfts');
+    ctx.log(`Minting ${inputs.nftCount || 10} random nfts`);
     const pledge = ctx.artifacts.Pledge.connect(nonceManager).attach(Pledge.address) as Pledge;
-    const MINT_AMOUNT = 10;
+    const MINT_AMOUNT = inputs.nftCount || 10;
     const toMint = generateRandomNFTs(MINT_AMOUNT);
     const tx = await pledge.mintMany(inputs.receiver, toMint);
     await tx.wait()
     // if(await pledge.balanceOf(inputs.receiver) >= BigInt(MINT_AMOUNT)) throw new Error('Minting failed');
-    ctx.log('Minted 10 random Pledge NFTs to', inputs.receiver);
+    ctx.log(`Minted ${inputs.nftCount || 10} random Pledge NFTs to`, inputs.receiver);
     ctx.log('NFTs minted:', JSON.stringify(toMint));
  },
  ensureDependencies: (ctx: Deployer, config?: DeployedContractList): DependenciesMap => {

@@ -5,6 +5,7 @@ import {
 } from '../src/config';
 import { Deployer } from '../src/deployer';
 import { unwrap } from '../src/helpers';
+import { parseEther } from "ethers";
 
 async function main() {
 
@@ -15,7 +16,7 @@ async function main() {
   }
   const deployer = await Deployer.create();
   deployer.log('Network:', network.name);
-  const deployConfig = await deployer.execute(['borrow'], config);
+  const deployConfig = await deployer.execute(['borrow'], config, { liquidity: parseEther('0.002') });
   mergeNetworkConfig(deployConfig);
   console.log('Deployment Success!');
 }

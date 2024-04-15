@@ -34,7 +34,7 @@ export interface IBorrowInterface extends Interface {
 
   encodeFunctionData(
     functionFragment: "accountBalance",
-    values?: undefined
+    values: [AddressLike]
   ): string;
   encodeFunctionData(
     functionFragment: "borrowEthForNFT",
@@ -150,7 +150,7 @@ export interface IBorrow extends BaseContract {
     event?: TCEvent
   ): Promise<this>;
 
-  accountBalance: TypedContractMethod<[], [bigint], "view">;
+  accountBalance: TypedContractMethod<[account: AddressLike], [bigint], "view">;
 
   borrowEthForNFT: TypedContractMethod<
     [tokenId: BigNumberish],
@@ -166,7 +166,7 @@ export interface IBorrow extends BaseContract {
 
   getFunction(
     nameOrSignature: "accountBalance"
-  ): TypedContractMethod<[], [bigint], "view">;
+  ): TypedContractMethod<[account: AddressLike], [bigint], "view">;
   getFunction(
     nameOrSignature: "borrowEthForNFT"
   ): TypedContractMethod<[tokenId: BigNumberish], [void], "nonpayable">;

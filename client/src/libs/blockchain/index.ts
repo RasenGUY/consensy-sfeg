@@ -59,6 +59,11 @@ export const ContractConfig = {
 
 export type AllContractTypes = typeof ContractTypes[keyof typeof ContractTypes];
 
+export function getAddress(chainId: number, contract: AllContractTypes) {
+  const addressConfig = ContractConfig[contract as AllContractTypes].address;
+  return ContractConfig[contract].address[chainId as keyof typeof addressConfig] as Address;
+}
+
 export class BlockchainAPIBase implements IBlockchainAPIBase {
  public baseUrl: string;
  public chain = wagmiConfig.chains.find(chain => chain.id === getAccount(wagmiConfig).chainId) ;
@@ -78,7 +83,7 @@ export class BlockchainAPIBase implements IBlockchainAPIBase {
  }
  // eslint-disable-next-line @typescript-eslint/no-explicit-any
  async handleWriteRequest(config: any) {
-  const hash = await writeContract(wagmiConfig, config);
+  const hash = await writeContract(wagmiConfig, config.request);
   return hash as Address;
  }
  async read({ 
@@ -89,10 +94,10 @@ export class BlockchainAPIBase implements IBlockchainAPIBase {
  // eslint-disable-next-line @typescript-eslint/no-explicit-any
  }: { contract: string, functionName: any, args: any, contractAddress?: Address  }) {
   const addressConfig = this.config[contract as AllContractTypes].address;
+  
   return await this.handleRequest(async () => await readContract(wagmiConfig, {
     address: !contractAddress ? this.config[contract as AllContractTypes].address[this.chain?.id as keyof typeof addressConfig] as Address : contractAddress,
-    // @ts-expect-error
-    abi: this.config[contract].abi,
+    abi: this.config[contract as AllContractTypes].abi,
     functionName,
     args
    })
@@ -108,17 +113,17 @@ export class BlockchainAPIBase implements IBlockchainAPIBase {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   contract: string, functionName: any, args: any, contractAddress?: Address }) {
   const addressConfig = this.config[contract as AllContractTypes].address;
-  const result = await simulateContract(wagmiConfig, {
-   address: !contractAddress ? this.config[contract as AllContractTypes].address[this.chain?.id as keyof typeof addressConfig] as `0x${string}` : contractAddress,
-   // @ts-ignore
-   abi: this.config[contract].abi,
-   functionName,
-   args
-  })
-  return await this.handleWriteRequest(result);
+  const params = {
+    address: !contractAddress ? this.config[contract as AllContractTypes].address[this.chain?.id as keyof typeof addressConfig] as `0x${string}` : contractAddress,
+    abi: this.config[contract as AllContractTypes].abi,
+    functionName,
+    args
+   }
+   const result = await simulateContract(wagmiConfig, params)
+   return await this.handleWriteRequest(result);
  }
  async waitForMined(hash: `0x${string}`) {  
-  return await this.handleRequest(async () => await waitForTransactionReceipt(wagmiConfig, { hash, confirmations: 5 }));
+  return await this.handleRequest(async () => await waitForTransactionReceipt(wagmiConfig, { hash }));
  }
  // eslint-disable-next-line @typescript-eslint/no-explicit-any
  async handleRequest(func: any) {
@@ -130,4 +135,5 @@ export class BlockchainAPIBase implements IBlockchainAPIBase {
  } 
 }
 
-
+export * from './wagmiConfig';
+export * from './abis';

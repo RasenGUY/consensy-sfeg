@@ -8,7 +8,6 @@ import { unwrap } from '../src/helpers';
 
 async function main() {
 
-  console.log(network.config)
   const chainId: number = unwrap(network.config, 'chainId');
   const config = getNetworkConfig(chainId);
   if (!config) {

@@ -53,8 +53,8 @@ contract Borrow is IBorrow, ERC721Holder, Context {
         emit LiquidityAdded(msg.sender, msg.value);
     }
 
-    function accountBalance() public view returns (uint256) {
-        return _accountBalances[_msgSender()];
+    function accountBalance(address account) public view returns (uint256) {
+        return _accountBalances[account];
     }
     
     function withdraw() public {

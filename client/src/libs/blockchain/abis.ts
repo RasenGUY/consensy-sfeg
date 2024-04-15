@@ -22,7 +22,7 @@ export const addressAbi = [
 
 /**
  * -
- * - [__View Contract on Linea Sepolia Testnet Etherscan__](https://sepolia.lineascan.build/address/0xb7a00361A8B257c76bB6ab81d17c51F8CB2cc500)
+ * - [__View Contract on Linea Sepolia Testnet Etherscan__](https://sepolia.lineascan.build/address/0x6DFf9eC5e175eb20028c351E9EbE377fB306Cd2C)
  */
 export const borrowAbi = [
   {
@@ -108,7 +108,7 @@ export const borrowAbi = [
   },
   {
     type: 'function',
-    inputs: [],
+    inputs: [{ name: 'account', internalType: 'address', type: 'address' }],
     name: 'accountBalance',
     outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
     stateMutability: 'view',
@@ -168,16 +168,16 @@ export const borrowAbi = [
 
 /**
  * -
- * - [__View Contract on Linea Sepolia Testnet Etherscan__](https://sepolia.lineascan.build/address/0xb7a00361A8B257c76bB6ab81d17c51F8CB2cc500)
+ * - [__View Contract on Linea Sepolia Testnet Etherscan__](https://sepolia.lineascan.build/address/0x6DFf9eC5e175eb20028c351E9EbE377fB306Cd2C)
  */
 export const borrowAddress = {
-  1337: '0x319322a08ac32b3111F1D6e1714E90F2c32535A9',
-  59141: '0xb7a00361A8B257c76bB6ab81d17c51F8CB2cc500',
+  1337: '0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512',
+  59141: '0x6DFf9eC5e175eb20028c351E9EbE377fB306Cd2C',
 } as const
 
 /**
  * -
- * - [__View Contract on Linea Sepolia Testnet Etherscan__](https://sepolia.lineascan.build/address/0xb7a00361A8B257c76bB6ab81d17c51F8CB2cc500)
+ * - [__View Contract on Linea Sepolia Testnet Etherscan__](https://sepolia.lineascan.build/address/0x6DFf9eC5e175eb20028c351E9EbE377fB306Cd2C)
  */
 export const borrowConfig = { address: borrowAddress, abi: borrowAbi } as const
 
@@ -511,7 +511,7 @@ export const iBorrowAbi = [
   },
   {
     type: 'function',
-    inputs: [],
+    inputs: [{ name: 'account', internalType: 'address', type: 'address' }],
     name: 'accountBalance',
     outputs: [{ name: '', internalType: 'uint256', type: 'uint256' }],
     stateMutability: 'view',
@@ -1254,7 +1254,7 @@ export const ownableAbi = [
 
 /**
  * -
- * - [__View Contract on Linea Sepolia Testnet Etherscan__](https://sepolia.lineascan.build/address/0xE620d8C68D4df60aB21F3bb2E969E272627b5d38)
+ * - [__View Contract on Linea Sepolia Testnet Etherscan__](https://sepolia.lineascan.build/address/0x51f95EFb4CCa27c962198045626DB076CfD07A61)
  */
 export const pledgeAbi = [
   {
@@ -1644,16 +1644,16 @@ export const pledgeAbi = [
 
 /**
  * -
- * - [__View Contract on Linea Sepolia Testnet Etherscan__](https://sepolia.lineascan.build/address/0xE620d8C68D4df60aB21F3bb2E969E272627b5d38)
+ * - [__View Contract on Linea Sepolia Testnet Etherscan__](https://sepolia.lineascan.build/address/0x51f95EFb4CCa27c962198045626DB076CfD07A61)
  */
 export const pledgeAddress = {
-  1337: '0x4a5dFcCD02950Cef2617F752E214604b6a7b41b9',
-  59141: '0xE620d8C68D4df60aB21F3bb2E969E272627b5d38',
+  1337: '0x5FbDB2315678afecb367f032d93F642f64180aa3',
+  59141: '0x51f95EFb4CCa27c962198045626DB076CfD07A61',
 } as const
 
 /**
  * -
- * - [__View Contract on Linea Sepolia Testnet Etherscan__](https://sepolia.lineascan.build/address/0xE620d8C68D4df60aB21F3bb2E969E272627b5d38)
+ * - [__View Contract on Linea Sepolia Testnet Etherscan__](https://sepolia.lineascan.build/address/0x51f95EFb4CCa27c962198045626DB076CfD07A61)
  */
 export const pledgeConfig = { address: pledgeAddress, abi: pledgeAbi } as const
 
