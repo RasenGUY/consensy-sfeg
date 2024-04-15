@@ -1,30 +1,24 @@
-# React + TypeScript + Vite
+# Client For Proof Of Concept borrow/lending
+This project demonstrates borrow/lending with nfts as collateral proof of concept (client side)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+copy over the variables in env.development.example into .env.development or .env and add your own keys
 
-Currently, two official plugins are available:
+# Get started
+Before continuing you must have the contracts deployed locally or to linea-sepolia
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+```shell
+# install dependencies
+yarn install
 
-## Expanding the ESLint configuration
+# copy over smart-contracts/deployed-addresses.json to client/.external/deployed-addresses.json
+cp -rf ../smart-contracts/deployed-addresses.json .external/deployed-addresses.json
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+# migrate the abis
+yarn wagmi generate
 
-- Configure the top-level `parserOptions` property like this:
+# run locally
+yarn run dev
+``` 
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Environment
+Node: v18

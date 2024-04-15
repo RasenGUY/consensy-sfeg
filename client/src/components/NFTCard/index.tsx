@@ -14,7 +14,8 @@ export const NFTCard: React.FC<NFTCardProps> = ({nft}: NFTCardProps) => {
   const [borrow, borrowQuery] = useBorrowEthForNFTMutation();
   const [approve, approveQuery] = useApproveForBorrowMutation();
   const { chainId } = getAccount(wagmiConfig)
-  const {data: isApproved, ...isApprovedQuery} = useIsAssetApprovedQuery({ borrowAddress: chainId ? getAddress(chainId, ContractTypes.BORROW) : '' as Address, tokenId: BigInt(nft.tokenId) });
+  const { data: isApproved, ...isApprovedQuery} = useIsAssetApprovedQuery({ 
+    borrowAddress: chainId ? getAddress(chainId, ContractTypes.BORROW) : '' as Address, tokenId: BigInt(nft.tokenId) });
  
   const borrowEth = async (tokenId: number) => {
     try {
